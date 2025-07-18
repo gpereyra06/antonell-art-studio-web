@@ -52,6 +52,9 @@ Email: ${formData.email}${formData.telefono ? `\nTeléfono: ${formData.telefono}
 
     const whatsappUrl = `https://wa.me/59895815939?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
+    
+    // Limpiar formulario después de enviar por WhatsApp
+    setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
   };
 
   return (

@@ -41,15 +41,15 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="flex items-center justify-between h-20 w-full px-8">
-        {/* Logo */}
+        {/* Logo y Título */}
         <motion.div 
-          className="flex items-center" 
-          style={{ marginLeft: '2rem' }}
+          className="flex items-center gap-3" 
+          style={{ marginLeft: '1rem' }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-3">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
@@ -63,6 +63,15 @@ const Navbar = () => {
                 className="h-8 sm:h-10 w-auto object-contain rounded-lg"
               />
             </motion.div>
+            {/* Título visible en mobile */}
+            <motion.span
+              className="md:hidden text-xl font-semibold"
+              style={{ color: 'var(--text-light)' }}
+              whileHover={{ color: 'var(--accent)' }}
+              transition={{ duration: 0.2 }}
+            >
+              AntonellartStudio
+            </motion.span>
           </Link>
         </motion.div>
 
@@ -140,26 +149,60 @@ const Navbar = () => {
         </motion.div>
 
         {/* Mobile menu button */}
-        <button
+        <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-text focus:outline-none p-2 rounded-md transition-colors duration-200"
-          style={{ color: '#ffffff' }}
+          className="md:hidden text-text focus:outline-none p-3 rounded-lg transition-all duration-300"
+          style={{ 
+            color: '#ffffff',
+            backgroundColor: isMenuOpen ? 'var(--glass)' : 'transparent',
+            border: '1px solid',
+            borderColor: isMenuOpen ? 'var(--accent)' : 'transparent'
+          }}
           onMouseEnter={(e) => {
             e.target.style.color = 'var(--accent)';
+            e.target.style.backgroundColor = 'var(--glass)';
+            e.target.style.borderColor = 'var(--accent)';
           }}
           onMouseLeave={(e) => {
             e.target.style.color = '#ffffff';
+            e.target.style.backgroundColor = isMenuOpen ? 'var(--glass)' : 'transparent';
+            e.target.style.borderColor = isMenuOpen ? 'var(--accent)' : 'transparent';
           }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           aria-label="Toggle menu"
         >
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <motion.svg 
+            className="w-6 h-6" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            animate={{ rotate: isMenuOpen ? 90 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
             {isMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <motion.path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M6 18L18 6M6 6l12 12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <motion.path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M4 6h16M4 12h16M4 18h16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
             )}
-          </svg>
-        </button>
+          </motion.svg>
+        </motion.button>
       </div>
 
       {/* Mobile Navigation */}
