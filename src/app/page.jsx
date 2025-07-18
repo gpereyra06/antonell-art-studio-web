@@ -109,13 +109,13 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Pinturas al Óleo <motion.span 
+            Antonell<motion.span 
               style={{ color: 'var(--accent)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Únicas
+              artStudio
             </motion.span>
           </motion.h1>
           

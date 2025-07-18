@@ -56,7 +56,7 @@ const Navbar = () => {
             >
               <Image
                 src="/AntonellartStudio.jpg"
-                alt="AntonellArt Studio Logo"
+                alt="AntonellartStudio Logo"
                 width={120}
                 height={40}
                 priority
@@ -83,14 +83,13 @@ const Navbar = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="flex items-center gap-8">
-            {menuItems.map((item, index) => (
+            {menuItems.map((item) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                transition={{ duration: 0.05, delay: 0.2 }}
                 whileHover={{ y: -2 }}
-                transition={{ duration: 0.05 }}
               >
                 <Link
                   href={item.href}

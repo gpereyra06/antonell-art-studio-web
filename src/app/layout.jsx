@@ -3,15 +3,15 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 export const metadata = {
-  title: "AntonellArt Studio - Pinturas al Óleo Únicas",
-  description: "Galería de arte para venta de pinturas al óleo y encargos personalizados. Arte original creado a mano en Uruguay.",
+  title: "AntonellartStudio - Pinturas al Óleo",
+  description: "Galería de arte para venta de pinturas al óleo y encargos personalizados.",
   keywords: ["pintura", "óleo", "arte", "Uruguay", "galería", "encargos", "antonella"],
-  authors: [{ name: "Antonella" }],
+  authors: [{ name: "Antonella Guarilla" }],
   openGraph: {
-    title: "AntonellArt Studio - Pinturas al Óleo Únicas",
-    description: "Arte original creado a mano en Uruguay",
+    title: "AntonellartStudio - Pinturas al Óleo",
+    description: "Galería de arte para venta de pinturas al óleo y encargos personalizados.",
     url: "https://antonellartstudio.com.uy",
-    siteName: "AntonellArt Studio",
+    siteName: "AntonellartStudio",
     locale: "es_UY",
     type: "website",
   },
