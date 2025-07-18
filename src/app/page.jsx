@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
   // Datos de prueba para las obras destacadas
   const obrasDestacadas = [
     {
@@ -59,13 +62,43 @@ export default function Home() {
       precio: 390,
       categoria: "paisaje",
       imagen: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=500&h=500&fit=crop"
+    },
+    {
+      id: 7,
+      titulo: "Marina Celestial",
+      tecnica: "Óleo sobre lienzo",
+      dimensiones: "80 x 100 cm",
+      precio: 680,
+      categoria: "paisaje",
+      imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=500&fit=crop"
     }
   ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % obrasDestacadas.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [obrasDestacadas.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % obrasDestacadas.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + obrasDestacadas.length) % obrasDestacadas.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background via-background-light to-background overflow-hidden">
+      <section id="hero" className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background via-background-light to-background overflow-hidden" style={{ paddingTop: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
         <div className="absolute inset-0 bg-[url('/art-background.jpg')] bg-cover bg-center opacity-20"></div>
         
         {/* Animated background elements */}
@@ -137,17 +170,18 @@ export default function Home() {
             >
               <Link 
                 href="#gallery"
-                className="font-semibold text-lg inline-block transition-all duration-300"
+                className="font-semibold text-base inline-block transition-all duration-300 text-center"
                 style={{ 
                   backgroundColor: '#d4af37',
                   color: '#1a1a2e',
-                  padding: '1.25rem 2.5rem',
-                  borderRadius: '0.75rem',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
                   border: '2px solid #d4af37',
-                  boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                  width: '160px'
                 }}
               >
-                Ver Catálogo
+                Ver galería
               </Link>
             </motion.div>
             <motion.div
@@ -156,18 +190,19 @@ export default function Home() {
             >
               <Link 
                 href="/contact"
-                className="font-semibold text-lg inline-block transition-all duration-300"
+                className="font-semibold text-base inline-block transition-all duration-300 text-center"
                 style={{ 
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   color: '#d4af37',
-                  padding: '1.25rem 2.5rem',
-                  borderRadius: '0.75rem',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
                   border: '2px solid #d4af37',
-                  boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-                  backdropFilter: 'blur(8px)'
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                  backdropFilter: 'blur(8px)',
+                  width: '160px'
                 }}
               >
-                Solicitar Encargo
+                Quiero el mío
               </Link>
             </motion.div>
           </motion.div>
@@ -178,7 +213,7 @@ export default function Home() {
       <motion.section 
         id="about"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -286,7 +321,8 @@ export default function Home() {
               </motion.div>
             </motion.div>
             <motion.div 
-              className="relative max-w-md mx-auto"
+              className="relative mx-auto"
+              style={{ maxWidth: '20rem' }}
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -376,74 +412,187 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Works Preview */}
-      <section id="gallery" className="bg-background-light" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-text mb-4">Obras <span className="text-primary">Destacadas</span></h2>
-            <p className="text-text-muted text-lg">Una selección de mis trabajos más recientes</p>
+      <section id="gallery" className="bg-background-light relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
+        {/* Background Elements */}
+        <motion.div 
+          className="absolute top-1/3 left-1/4 w-28 h-28 bg-primary/6 rounded-full blur-2xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, 20, 0]
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 right-1/5 w-20 h-20 bg-secondary/6 rounded-full blur-2xl"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.6, 0.4],
+            x: [0, -25, 0]
+          }}
+          transition={{ 
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        />
+        
+        <div className="w-full relative z-10">
+          <div className="text-center px-4 sm:px-6 lg:px-8">
+            <motion.h2 
+              className="text-4xl font-bold text-text"
+              style={{ marginBottom: '1rem' }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Obras <motion.span 
+                className="text-primary"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                Destacadas
+              </motion.span>
+            </motion.h2>
+            <motion.p 
+              className="text-text-muted text-lg"
+              style={{ marginBottom: '2rem' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Una selección de mis trabajos más recientes
+            </motion.p>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {obrasDestacadas.map((obra, index) => (
+          {/* Modern Single Artwork Carousel */}
+          <div className="flex justify-center w-full" style={{ marginBottom: '2rem' }}>
+            <div className="relative mx-auto" style={{ paddingLeft: '1rem', paddingRight: '1rem', maxWidth: '28rem' }}>
+              <div className="overflow-hidden rounded-2xl group">
               <motion.div 
-                key={obra.id} 
-                className="group cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1,
-                  ease: "easeOut"
+                className="flex"
+                animate={{ x: `${-currentSlide * 100}%` }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut"
                 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
               >
-                <div className="bg-glass border border-border rounded-xl overflow-hidden backdrop-blur-md hover:bg-white/20 transition-all duration-500 shadow-lg hover:shadow-2xl hover:border-primary/30">
-                  <div className="aspect-square relative overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileHover={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <img 
-                      src={obra.imagen}
-                      alt={obra.titulo}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                {obrasDestacadas.map((obra, index) => (
                   <motion.div 
-                    className="p-6"
-                    whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+                    key={obra.id}
+                    className="w-full flex-shrink-0"
+                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <h3 className="text-text font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300">
-                      {obra.titulo}
-                    </h3>
-                    <p className="text-text-muted mb-2">{obra.tecnica}</p>
-                    <p className="text-text-muted text-sm">{obra.dimensiones}</p>
-                    <motion.p 
-                      className="text-primary font-semibold text-lg mt-3"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      ${obra.precio} USD
-                    </motion.p>
+                    <div className="bg-glass border border-border rounded-xl overflow-hidden backdrop-blur-md shadow-lg hover:shadow-2xl hover:border-primary/30 transition-all duration-500">
+                      <div className="aspect-[4/3] sm:aspect-[5/3] lg:aspect-[16/9] relative overflow-hidden rounded-xl">
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0"
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                        <img 
+                          src={obra.imagen}
+                          alt={obra.titulo}
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 rounded-xl"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                        
+                        {/* Always Visible Info */}
+                        <motion.div 
+                          className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 text-white"
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                          <div className="bg-background/80 backdrop-blur-sm rounded-lg p-4 sm:p-6">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-primary">{obra.titulo}</h3>
+                            <p className="text-sm sm:text-base text-gray-200 mb-1">{obra.tecnica}</p>
+                            <p className="text-sm sm:text-base text-gray-200 mb-3">{obra.dimensiones}</p>
+                            <p className="text-primary font-bold text-lg sm:text-xl lg:text-2xl">${obra.precio} USD</p>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
                   </motion.div>
-                </div>
+                ))}
               </motion.div>
-            ))}
+            </div>
+            
+            {/* Carousel Indicators */}
+            <div className="flex justify-center mt-8 sm:mt-10 lg:mt-12 space-x-3">
+              {obrasDestacadas.map((_, index) => (
+                <motion.div
+                  key={index}
+                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full cursor-pointer transition-all duration-300 ${
+                    index === currentSlide ? 'bg-primary scale-125' : 'bg-primary/30'
+                  }`}
+                  onClick={() => goToSlide(index)}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 1.1 }}
+                />
+              ))}
+            </div>
+            
+            {/* Navigation Arrows */}
+            <motion.button 
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-3 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              onClick={prevSlide}
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 26, 46, 0.9)' }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </motion.button>
+            
+            <motion.button 
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-3 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              onClick={nextSlide}
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 26, 46, 0.9)' }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.button>
+            </div>
           </div>
 
-          <div className="text-center">
-            <Link 
-              href="#gallery"
-              className="bg-primary hover:bg-primary-dark text-background font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+          <motion.div 
+            className="text-center px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Ver Todas las Obras
-            </Link>
-          </div>
+              <Link 
+                href="#gallery"
+                className="font-semibold text-base inline-block transition-all duration-300"
+                style={{ 
+                  backgroundColor: '#d4af37',
+                  color: '#1a1a2e',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
+                  border: '2px solid #d4af37',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
+                }}
+              >
+                Ver Galería Completa
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -451,7 +600,7 @@ export default function Home() {
       <motion.section 
         id="contact"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -525,7 +674,7 @@ export default function Home() {
       <motion.section 
         id="process"
         className="bg-background-light relative overflow-hidden" 
-        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -566,7 +715,7 @@ export default function Home() {
       <motion.section 
         id="pricing"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -607,7 +756,7 @@ export default function Home() {
       <motion.section 
         id="blog"
         className="bg-background-light relative overflow-hidden" 
-        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
