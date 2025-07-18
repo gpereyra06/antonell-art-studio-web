@@ -97,7 +97,8 @@ export default function Home() {
 
         <div className="relative z-10 text-center w-full px-4 flex flex-col items-center">
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-text mb-6"
+            className="text-5xl md:text-7xl font-bold text-text"
+            style={{ marginBottom: '2rem' }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -113,7 +114,8 @@ export default function Home() {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-text-muted mb-8 max-w-2xl text-center"
+            className="text-xl md:text-2xl text-text-muted max-w-2xl text-center"
+            style={{ marginBottom: '3rem' }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -123,7 +125,8 @@ export default function Home() {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row justify-center"
+            style={{ gap: '2rem' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -134,7 +137,15 @@ export default function Home() {
             >
               <Link 
                 href="/gallery"
-                className="bg-primary hover:bg-primary-dark text-background font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block"
+                className="font-semibold text-lg inline-block transition-all duration-300"
+                style={{ 
+                  backgroundColor: '#d4af37',
+                  color: '#1a1a2e',
+                  padding: '1.25rem 2.5rem',
+                  borderRadius: '0.75rem',
+                  border: '2px solid #d4af37',
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+                }}
               >
                 Ver Catálogo
               </Link>
@@ -145,7 +156,16 @@ export default function Home() {
             >
               <Link 
                 href="/contact"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block backdrop-blur-sm bg-glass"
+                className="font-semibold text-lg inline-block transition-all duration-300"
+                style={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  color: '#d4af37',
+                  padding: '1.25rem 2.5rem',
+                  borderRadius: '0.75rem',
+                  border: '2px solid #d4af37',
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+                  backdropFilter: 'blur(8px)'
+                }}
               >
                 Solicitar Encargo
               </Link>
@@ -155,28 +175,64 @@ export default function Home() {
       </section>
 
       {/* About Preview Section */}
-      <section className="" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
+      <motion.section 
+        className="" 
+        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center">
-            <div className="max-w-md mx-auto">
-              <h2 className="text-4xl font-bold text-text mb-6">Sobre <span className="text-primary">Antonella</span></h2>
-              <p className="text-text-muted text-lg mb-6 leading-relaxed">
+            <motion.div 
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <motion.h2 
+                className="text-4xl font-bold text-text mb-6"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                Sobre <span className="text-primary">Antonella</span>
+              </motion.h2>
+              <motion.p 
+                className="text-text-muted text-lg mb-6 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
                 Soy una artista uruguaya apasionada por la pintura al óleo. Cada obra que creo 
                 es única y refleja mi visión personal del mundo que nos rodea. Mi trabajo abarca 
                 desde paisajes hasta retratos, siempre buscando capturar la esencia y emoción 
                 en cada pincelada.
-              </p>
-              <p className="text-text-muted text-lg mb-8 leading-relaxed">
+              </motion.p>
+              <motion.p 
+                className="text-text-muted text-lg mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
                 Ofrezco tanto obras originales como encargos personalizados, trabajando 
                 estrechamente con cada cliente para crear piezas que superen sus expectativas.
-              </p>
-              <Link 
-                href="/about"
-                className="text-primary hover:text-primary-dark font-semibold text-lg border-b-2 border-primary hover:border-primary-dark transition-colors duration-200"
+              </motion.p>
+              <motion.div
+                whileHover={{ x: 10 }}
+                transition={{ duration: 0.2 }}
               >
-                Conoce mi historia →
-              </Link>
-            </div>
+                <Link 
+                  href="/about"
+                  className="text-primary hover:text-primary-dark font-semibold text-lg border-b-2 border-primary hover:border-primary-dark transition-all duration-300 inline-block"
+                >
+                  Conoce mi historia →
+                </Link>
+              </motion.div>
+            </motion.div>
             <motion.div 
               className="bg-glass border border-border rounded-xl p-6 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 max-w-md mx-auto"
               initial={{ opacity: 0, x: 50 }}
@@ -212,7 +268,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Featured Works Preview */}
       <section className="bg-background-light" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
@@ -287,20 +343,77 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-text mb-6">¿Tienes una <span className="text-primary">Visión Especial</span>?</h2>
-          <p className="text-text-muted text-lg mb-8">
-            Trabajo con encargos personalizados para crear la obra perfecta que se adapte a tu espacio y gustos.
-          </p>
-          <Link 
-            href="/process"
-            className="bg-secondary hover:bg-secondary/80 text-text font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg"
+      <motion.section 
+        className="relative overflow-hidden" 
+        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          className="absolute top-1/2 left-1/4 w-20 h-20 bg-primary/5 rounded-full blur-xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{ 
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/3 right-1/4 w-16 h-16 bg-secondary/5 rounded-full blur-xl"
+          animate={{ 
+            scale: [1.3, 1, 1.3],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+          <motion.h2 
+            className="text-4xl font-bold text-text mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            Conoce mi Proceso
-          </Link>
+            ¿Tienes una <span className="text-primary">Visión Especial</span>?
+          </motion.h2>
+          <motion.p 
+            className="text-text-muted text-lg mb-8 max-w-2xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Trabajo con encargos personalizados para crear la obra perfecta que se adapte a tu espacio y gustos.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link 
+              href="/process"
+              className="bg-secondary hover:bg-secondary/80 text-text font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block"
+            >
+              Conoce mi Proceso
+            </Link>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
