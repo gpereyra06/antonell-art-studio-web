@@ -89,28 +89,7 @@ const Footer = () => {
             <h4 className="text-xl font-semibold text-text mb-4 text-center">Enlaces</h4>
             <div className="grid grid-cols-3 gap-x-2 gap-y-2">
               <Link 
-                href="/gallery" 
-                className="text-base text-center block py-1 transition-all duration-300"
-                style={{
-                  textDecoration: 'none',
-                  color: '#cccccc'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = '#d4af37';
-                  e.target.style.textDecoration = 'underline';
-                  e.target.style.textDecorationColor = '#d4af37';
-                  e.target.style.textDecorationThickness = '2px';
-                  e.target.style.textUnderlineOffset = '4px';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = '#cccccc';
-                  e.target.style.textDecoration = 'none';
-                }}
-              >
-                Galería
-              </Link>
-              <Link 
-                href="/about" 
+                href="#about" 
                 className="text-base text-center block py-1 transition-all duration-300"
                 style={{
                   textDecoration: 'none',
@@ -131,7 +110,28 @@ const Footer = () => {
                 Sobre Mí
               </Link>
               <Link 
-                href="/process" 
+                href="#gallery" 
+                className="text-base text-center block py-1 transition-all duration-300"
+                style={{
+                  textDecoration: 'none',
+                  color: '#cccccc'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#d4af37';
+                  e.target.style.textDecoration = 'underline';
+                  e.target.style.textDecorationColor = '#d4af37';
+                  e.target.style.textDecorationThickness = '2px';
+                  e.target.style.textUnderlineOffset = '4px';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#cccccc';
+                  e.target.style.textDecoration = 'none';
+                }}
+              >
+                Galería
+              </Link>
+              <Link 
+                href="#process" 
                 className="text-base text-center block py-1 transition-all duration-300"
                 style={{
                   textDecoration: 'none',
@@ -152,7 +152,7 @@ const Footer = () => {
                 Proceso
               </Link>
               <Link 
-                href="/pricing" 
+                href="#pricing" 
                 className="text-base text-center block py-1 transition-all duration-300"
                 style={{
                   textDecoration: 'none',
@@ -173,7 +173,7 @@ const Footer = () => {
                 Precios
               </Link>
               <Link 
-                href="/blog" 
+                href="#blog" 
                 className="text-base text-center block py-1 transition-all duration-300"
                 style={{
                   textDecoration: 'none',
@@ -194,7 +194,7 @@ const Footer = () => {
                 Blog
               </Link>
               <Link 
-                href="/contact" 
+                href="#contact" 
                 className="text-base text-center block py-1 transition-all duration-300"
                 style={{
                   textDecoration: 'none',

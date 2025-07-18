@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background via-background-light to-background overflow-hidden">
+      <section id="hero" className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background via-background-light to-background overflow-hidden">
         <div className="absolute inset-0 bg-[url('/art-background.jpg')] bg-cover bg-center opacity-20"></div>
         
         {/* Animated background elements */}
@@ -136,7 +136,7 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
             >
               <Link 
-                href="/gallery"
+                href="#gallery"
                 className="font-semibold text-lg inline-block transition-all duration-300"
                 style={{ 
                   backgroundColor: '#d4af37',
@@ -176,14 +176,58 @@ export default function Home() {
 
       {/* About Preview Section */}
       <motion.section 
-        className="" 
+        id="about"
+        className="relative overflow-hidden" 
         style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        {/* Enhanced Background Elements */}
+        <motion.div 
+          className="absolute top-1/4 left-1/6 w-32 h-32 bg-primary/8 rounded-full blur-2xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+            x: [0, 10, 0]
+          }}
+          transition={{ 
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 right-1/6 w-24 h-24 bg-secondary/8 rounded-full blur-2xl"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, -15, 0]
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 right-1/3 w-16 h-16 bg-primary/6 rounded-full blur-xl"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.3, 0.1],
+            y: [0, 20, 0]
+          }}
+          transition={{ 
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center">
             <motion.div 
               className="max-w-md mx-auto"
@@ -197,7 +241,13 @@ export default function Home() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                Sobre <span className="text-primary">Antonella</span>
+                Sobre <motion.span 
+                  className="text-primary"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Antonella
+                </motion.span>
               </motion.h2>
               <motion.p 
                 className="text-text-muted text-lg mb-6 leading-relaxed"
@@ -205,6 +255,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.01 }}
               >
                 Soy una artista uruguaya apasionada por la pintura al óleo. Cada obra que creo 
                 es única y refleja mi visión personal del mundo que nos rodea. Mi trabajo abarca 
@@ -217,12 +268,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.01 }}
               >
                 Ofrezco tanto obras originales como encargos personalizados, trabajando 
                 estrechamente con cada cliente para crear piezas que superen sus expectativas.
               </motion.p>
               <motion.div
-                whileHover={{ x: 10 }}
+                whileHover={{ x: 10, scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
                 <Link 
@@ -234,36 +286,89 @@ export default function Home() {
               </motion.div>
             </motion.div>
             <motion.div 
-              className="bg-glass border border-border rounded-xl p-6 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 max-w-md mx-auto"
+              className="relative max-w-md mx-auto"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, rotate: 1 }}
             >
+              {/* Decorative Elements */}
               <motion.div 
-                className="aspect-square w-full rounded-xl relative overflow-hidden"
-                whileHover={{ scale: 1.05 }}
+                className="absolute -top-4 -left-4 w-20 h-20 bg-primary/10 rounded-full blur-xl"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="absolute -bottom-4 -right-4 w-16 h-16 bg-secondary/10 rounded-full blur-xl"
+                animate={{ 
+                  scale: [1.2, 1, 1.2],
+                  opacity: [0.4, 0.7, 0.4]
+                }}
+                transition={{ 
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 2
+                }}
+              />
+              
+              <motion.div 
+                className="bg-glass border border-border rounded-xl p-6 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 relative"
+                whileHover={{ scale: 1.02, rotate: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"
-                  animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.02, 1]
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop&crop=face"
-                  alt="Antonella - Artista"
-                  className="w-full h-full object-cover rounded-xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                <motion.div 
+                  className="aspect-square w-full rounded-xl relative overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"
+                    animate={{ 
+                      opacity: [0.3, 0.6, 0.3],
+                      scale: [1, 1.02, 1]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <img 
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop&crop=face"
+                    alt="Antonella - Artista"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent"
+                    whileHover={{ opacity: 0.7 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Hover Overlay */}
+                  <motion.div 
+                    className="absolute inset-0 bg-primary/20 rounded-xl opacity-0 flex items-center justify-center"
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div 
+                      className="text-white text-center"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p className="text-lg font-semibold">Antonella</p>
+                      <p className="text-sm">Artista Uruguaya</p>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
@@ -271,7 +376,7 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Works Preview */}
-      <section className="bg-background-light" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
+      <section id="gallery" className="bg-background-light" style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-text mb-4">Obras <span className="text-primary">Destacadas</span></h2>
@@ -333,7 +438,7 @@ export default function Home() {
 
           <div className="text-center">
             <Link 
-              href="/gallery"
+              href="#gallery"
               className="bg-primary hover:bg-primary-dark text-background font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
             >
               Ver Todas las Obras
@@ -344,6 +449,7 @@ export default function Home() {
 
       {/* Call to Action */}
       <motion.section 
+        id="contact"
         className="relative overflow-hidden" 
         style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
         initial={{ opacity: 0 }}
@@ -406,11 +512,134 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
           >
             <Link 
-              href="/process"
+              href="#process"
               className="bg-secondary hover:bg-secondary/80 text-text font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block"
             >
               Conoce mi Proceso
             </Link>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Process Section */}
+      <motion.section 
+        id="process"
+        className="bg-background-light relative overflow-hidden" 
+        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2 
+            className="text-4xl font-bold text-text mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Mi <span className="text-primary">Proceso</span>
+          </motion.h2>
+          <motion.p 
+            className="text-text-muted text-lg mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Conoce cómo transformo ideas en obras de arte únicas
+          </motion.p>
+          <motion.div 
+            className="text-text-muted text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p>Contenido del proceso creativo próximamente...</p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Pricing Section */}
+      <motion.section 
+        id="pricing"
+        className="relative overflow-hidden" 
+        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2 
+            className="text-4xl font-bold text-text mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-primary">Precios</span> y Tamaños
+          </motion.h2>
+          <motion.p 
+            className="text-text-muted text-lg mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Información sobre precios y opciones de encargo
+          </motion.p>
+          <motion.div 
+            className="text-text-muted text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p>Tabla de precios próximamente...</p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Blog Section */}
+      <motion.section 
+        id="blog"
+        className="bg-background-light relative overflow-hidden" 
+        style={{ paddingTop: '5rem', paddingBottom: '5rem', paddingLeft: '1rem', paddingRight: '1rem' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2 
+            className="text-4xl font-bold text-text mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-primary">Blog</span> Artístico
+          </motion.h2>
+          <motion.p 
+            className="text-text-muted text-lg mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Historias, inspiraciones y proceso creativo
+          </motion.p>
+          <motion.div 
+            className="text-text-muted text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p>Artículos del blog próximamente...</p>
           </motion.div>
         </div>
       </motion.section>

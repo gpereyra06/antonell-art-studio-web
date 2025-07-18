@@ -19,13 +19,13 @@ const Navbar = () => {
   }, []);
 
   const menuItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'About', href: '/about' },
-    { name: 'Process', href: '/process' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Inicio', href: '#hero' },
+    { name: 'Sobre Mí', href: '#about' },
+    { name: 'Galería', href: '#gallery' },
+    { name: 'Proceso', href: '#process' },
+    { name: 'Precios', href: '#pricing' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Contacto', href: '#contact' },
   ];
 
   return (
