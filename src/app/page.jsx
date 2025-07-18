@@ -99,7 +99,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" style={{ paddingTop: '5rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}>
+      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" style={{ padding: '5rem 1rem', background: 'var(--gradient-hero)' }}>
         <div className="absolute inset-0 bg-[url('/art-background.jpg')] bg-cover bg-center opacity-20"></div>
         <div className="relative z-10 text-center w-full px-4 flex flex-col items-center">
           <motion.h1 
@@ -186,7 +186,7 @@ export default function Home() {
       <motion.section 
         id="about"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '4rem', paddingBottom: '4rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero-reverse)' }}
+        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero-reverse)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -362,7 +362,7 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Works Preview */}
-      <section id="gallery" className="relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}>  
+      <section id="gallery" className="relative overflow-hidden" style={{ padding: '5rem 1rem', background: 'var(--gradient-hero)' }}>  
         <div className="w-full relative z-10">
           <div className="text-center px-4 sm:px-6 lg:px-8">
             <motion.h2 
@@ -524,7 +524,7 @@ export default function Home() {
       <motion.section 
         id="contact"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '4rem', paddingBottom: '4rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero-reverse)' }}
+        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero-reverse)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -576,7 +576,7 @@ export default function Home() {
       <motion.section 
         id="process"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}
+        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -620,7 +620,7 @@ export default function Home() {
       <motion.section 
         id="pricing"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero-reverse)' }}
+        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero-reverse)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -664,7 +664,7 @@ export default function Home() {
       <motion.section 
         id="blog"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}
+        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}

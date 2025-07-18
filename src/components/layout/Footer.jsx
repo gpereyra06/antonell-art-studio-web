@@ -15,36 +15,7 @@ const Footer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-    >
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute top-1/4 left-1/6 w-16 h-16 rounded-full blur-xl"
-        style={{ backgroundColor: 'rgba(78, 205, 196, 0.05)' }}
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2]
-        }}
-        transition={{ 
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-1/3 right-1/5 w-12 h-12 rounded-full blur-xl"
-        style={{ backgroundColor: 'rgba(45, 156, 219, 0.05)' }}
-        animate={{ 
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{ 
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 3
-        }}
-      />
-      
+    > 
       <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
           {/* Brand & Social */}

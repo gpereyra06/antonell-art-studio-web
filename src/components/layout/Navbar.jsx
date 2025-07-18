@@ -83,12 +83,12 @@ const Navbar = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="flex items-center gap-8">
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.05, delay: 0.2 }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -2 }}
               >
                 <Link
@@ -142,12 +142,12 @@ const Navbar = () => {
             transition={{ duration: 0.2 }}
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.40z"/>
             </svg>
           </motion.a>
         </motion.div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button mejorado */}
         <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-text focus:outline-none p-3 rounded-lg transition-all duration-300"
@@ -155,7 +155,8 @@ const Navbar = () => {
             color: '#ffffff',
             backgroundColor: isMenuOpen ? 'var(--glass)' : 'transparent',
             border: '1px solid',
-            borderColor: isMenuOpen ? 'var(--accent)' : 'transparent'
+            borderColor: isMenuOpen ? 'var(--accent)' : 'transparent',
+            marginRight: '1rem'
           }}
           onMouseEnter={(e) => {
             e.target.style.color = 'var(--accent)';
@@ -180,76 +181,111 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             {isMenuOpen ? (
-              <motion.path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M6 18L18 6M6 6l12 12"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <motion.path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16M4 18h16"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </motion.svg>
         </motion.button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation mejorado */}
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-sm rounded-b-lg" style={{ 
-            background: 'var(--gradient-hero-reverse)'
-          }}>
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block px-4 py-3 text-text hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
-                style={{ color: '#ffffff' }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--accent)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = '#ffffff';
-                }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <div className="border-t mt-4 pt-4" style={{ borderTopColor: 'var(--border)' }}>
-              <a
+        <motion.div 
+          className="md:hidden"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <motion.div 
+            className="mx-6 my-2 backdrop-blur-md rounded-2xl border shadow-2xl overflow-hidden" 
+            style={{ 
+              background: 'linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(45, 156, 219, 0.1) 100%)',
+              borderColor: 'var(--border)',
+              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)'
+            }}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+
+            {/* Items del menú */}
+            <div className="pt-6 pb-4">
+              {menuItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="flex items-center px-6 py-4 text-lg font-medium transition-all duration-300 border-l-4 border-transparent"
+                    style={{ color: '#ffffff' }}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = 'var(--accent)';
+                      e.target.style.backgroundColor = 'rgba(78, 205, 196, 0.1)';
+                      e.target.style.borderLeftColor = 'var(--accent)';
+                      e.target.style.transform = 'translateX(8px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#ffffff';
+                      e.target.style.backgroundColor = 'transparent';
+                      e.target.style.borderLeftColor = 'transparent';
+                      e.target.style.transform = 'translateX(0px)';
+                    }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <motion.span
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Sección social */}
+            <motion.div 
+              className="px-6 py-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+            >
+              <motion.a
                 href="https://instagram.com/antonellartstudio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-3 text-text hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
-                style={{ color: '#ffffff' }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--accent)';
+                className="flex items-center justify-center gap-3 py-3 px-4 rounded-xl font-medium text-lg transition-all duration-300"
+                style={{ 
+                  color: '#ffffff',
+                  background: 'linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%)',
+                  boxShadow: '0 4px 15px rgba(78, 205, 196, 0.3)'
                 }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = '#ffffff';
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: '0 6px 20px rgba(78, 205, 196, 0.4)'
                 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Instagram @antonellartstudio
-              </a>
-            </div>
-          </div>
-        </div>
+                <motion.svg 
+                  className="w-5 h-5" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                  whileHover={{ rotate: 15 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.40z"/>
+                </motion.svg>
+                <span>Síguenos en Instagram</span>
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       )}
     </motion.nav>
   );
