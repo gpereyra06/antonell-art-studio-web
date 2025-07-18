@@ -74,13 +74,25 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -2 }}
+                transition={{ duration: 0.05 }}
               >
                 <Link
                   href={item.href}
-                  className="px-4 py-2 text-text hover:text-primary transition-colors duration-300 font-medium text-lg relative group"
+                  className="px-4 py-2 text-text font-medium text-lg transition-all duration-300"
+                  style={{
+                    borderBottom: '2px solid transparent',
+                    color: '#ffffff'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = '#d4af37';
+                    e.target.style.borderBottomColor = '#d4af37';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = '#ffffff';
+                    e.target.style.borderBottomColor = 'transparent';
+                  }}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </motion.div>
             ))}
