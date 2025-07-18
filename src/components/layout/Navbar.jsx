@@ -31,9 +31,9 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-border transition-all duration-300"
+      className="fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-300"
       style={{ 
-        backgroundColor: scrolled ? 'rgba(26, 26, 46, 0.95)' : 'rgba(26, 26, 46, 0.8)',
+        background: 'var(--gradient-hero-reverse)',
         boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.1)'
       }}
       initial={{ y: -100 }}
@@ -91,8 +91,8 @@ const Navbar = () => {
                     color: '#ffffff'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.color = '#d4af37';
-                    e.target.style.borderBottomColor = '#d4af37';
+                    e.target.style.color = 'var(--accent)';
+                    e.target.style.borderBottomColor = 'var(--accent)';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.color = '#ffffff';
@@ -118,7 +118,17 @@ const Navbar = () => {
             href="https://instagram.com/antonellartstudio"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text hover:text-primary transition-colors duration-300 p-3 rounded-full hover:bg-glass"
+            className="text-text transition-colors duration-300 p-3 rounded-full hover:bg-glass"
+            style={{ 
+              color: '#ffffff',
+              '--hover-color': 'var(--accent)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.color = 'var(--accent)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = '#ffffff';
+            }}
             aria-label="Instagram"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.2 }}
@@ -132,7 +142,14 @@ const Navbar = () => {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-text hover:text-primary focus:outline-none p-2 rounded-md transition-colors duration-200"
+          className="md:hidden text-text focus:outline-none p-2 rounded-md transition-colors duration-200"
+          style={{ color: '#ffffff' }}
+          onMouseEnter={(e) => {
+            e.target.style.color = 'var(--accent)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = '#ffffff';
+          }}
           aria-label="Toggle menu"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,23 +165,39 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-background-light/95 backdrop-blur-sm border-t border-border rounded-b-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-sm rounded-b-lg" style={{ 
+            background: 'var(--gradient-hero-reverse)'
+          }}>
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-3 text-text hover:text-primary hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
+                className="block px-4 py-3 text-text hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
+                style={{ color: '#ffffff' }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = 'var(--accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#ffffff';
+                }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="border-t border-border mt-4 pt-4">
+            <div className="border-t mt-4 pt-4" style={{ borderTopColor: 'var(--border)' }}>
               <a
                 href="https://instagram.com/antonellartstudio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-3 text-text hover:text-primary hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
+                className="flex items-center px-4 py-3 text-text hover:bg-glass transition-all duration-200 font-medium text-lg rounded-md"
+                style={{ color: '#ffffff' }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = 'var(--accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#ffffff';
+                }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">

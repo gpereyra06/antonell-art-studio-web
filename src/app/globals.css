@@ -1,15 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #d4af37;
-  --primary-dark: #b8941f;
-  --secondary: #8b4513;
-  --background: #1a1a2e;
-  --background-light: #16213e;
-  --text: #ffffff;
-  --text-muted: #cccccc;
-  --glass: rgba(255, 255, 255, 0.1);
-  --border: rgba(255, 255, 255, 0.2);
+  /* Colores principales del logo */
+  --primary: #1B7A85;           /* Turquesa profundo */
+  --primary-rgb: 27, 122, 133;
+  --secondary: #2D9CDB;         /* Turquesa medio */
+  --secondary-rgb: 45, 156, 219;
+  --accent: #4ECDC4;            /* Turquesa claro */
+  --accent-rgb: 78, 205, 196;
+  --complement: #F7E7CE;        /* Crema dorado */
+  --complement-rgb: 247, 231, 206;
+  
+  /* Fondos */
+  --bg-primary: #FDFCF8;        /* Fondo principal */
+  --bg-secondary: #F9F7F1;      /* Fondo secundario */
+  --bg-dark: #1A1A2E;           /* Fondo oscuro */
+  
+  /* Textos */
+  --text-primary: #2C3E50;      /* Texto principal */
+  --text-secondary: #5D6D7E;    /* Texto secundario */
+  --text-light: #FFFFFF;        /* Texto claro */
+  --text-on-primary: #FFFFFF;   /* Texto sobre turquesa */
+  
+  /* Gradientes inspirados en el logo */
+  --gradient-ocean: linear-gradient(135deg, #4ECDC4 0%, #2D9CDB 50%, #1B7A85 100%);
+  --gradient-sun: linear-gradient(135deg, #FFE4B5 0%, #F7E7CE 50%, #E6D7B8 100%);
+  --gradient-hero: linear-gradient(180deg, #1A1A2E 0%, #1B7A85 100%);
+  --gradient-hero-reverse: linear-gradient(180deg, #1B7A85 0%, #1A1A2E 100%);
+  --gradient-soft: linear-gradient(135deg, #F9F7F1 0%, #FDFCF8 100%);
+  
+  /* Escala de turquesas */
+  --turquoise-50: #E6F7F7;      /* Muy claro */
+  --turquoise-100: #B3E5E6;     /* Claro */
+  --turquoise-200: #80D3D4;     /* Medio claro */
+  --turquoise-300: #4ECDC4;     /* Acento */
+  --turquoise-400: #2BB3AA;     /* Medio */
+  --turquoise-500: #2D9CDB;     /* Secundario */
+  --turquoise-600: #1B7A85;     /* Principal */
+  --turquoise-700: #16656F;     /* Oscuro */
+  --turquoise-800: #115058;     /* Muy oscuro */
+  
+  /* Estados */
+  --success: #27AE60;
+  --success-light: #D5F4E6;
+  --warning: #F39C12;
+  --warning-light: #FCF3CD;
+  --error: #E74C3C;
+  --error-light: #FADBD8;
+  --info: #2D9CDB;
+  --info-light: #D6EAF8;
+  
+  /* Premium */
+  --gold: #D4AF37;
+  --gold-light: #F4E4BC;
+  
+  /* Grises elegantes */
+  --gray-50: #F8F9FA;
+  --gray-100: #E9ECEF;
+  --gray-200: #DEE2E6;
+  --gray-300: #CED4DA;
+  --gray-400: #ADB5BD;
+  --gray-500: #6C757D;
+  --gray-600: #495057;
+  --gray-700: #343A40;
+  --gray-800: #212529;
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(27, 122, 133, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(27, 122, 133, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(27, 122, 133, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(27, 122, 133, 0.1);
+  
+  /* Compatibilidad con colores actuales */
+  --background: var(--bg-dark);
+  --background-light: var(--turquoise-800);
+  --text: var(--text-light);
+  --text-muted: var(--gray-400);
+  --glass: rgba(78, 205, 196, 0.1);
+  --border: rgba(78, 205, 196, 0.2);
 }
 
 * {
@@ -19,8 +87,8 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--text);
+  background: var(--bg-dark);
+  color: var(--text-light);
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
 }
