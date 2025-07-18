@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -49,13 +50,19 @@ const Navbar = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Link href="/" className="flex items-center">
-            <motion.span 
-              className="text-xl sm:text-2xl font-bold text-primary"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              AntonellArt Studio
-            </motion.span>
+              <Image
+                src="/AntonellartStudio.jpg"
+                alt="AntonellArt Studio Logo"
+                width={120}
+                height={40}
+                priority
+                className="h-8 sm:h-10 w-auto object-contain rounded-lg"
+              />
+            </motion.div>
           </Link>
         </motion.div>
 
