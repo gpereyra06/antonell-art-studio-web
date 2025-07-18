@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import ContactForm from "../components/forms/ContactForm";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -100,36 +101,6 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden" style={{ paddingTop: '5rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}>
         <div className="absolute inset-0 bg-[url('/art-background.jpg')] bg-cover bg-center opacity-20"></div>
-        
-        {/* Animated background elements */}
-        <motion.div 
-          className="absolute top-20 left-10 w-32 h-32 rounded-full blur-xl"
-          style={{ backgroundColor: 'rgba(78, 205, 196, 0.15)' }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-10 w-24 h-24 rounded-full blur-xl"
-          style={{ backgroundColor: 'rgba(45, 156, 219, 0.15)' }}
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-
         <div className="relative z-10 text-center w-full px-4 flex flex-col items-center">
           <motion.h1 
             className="text-5xl md:text-7xl font-bold text-text"
@@ -220,53 +191,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-      >
-        {/* Enhanced Background Elements */}
-        <motion.div 
-          className="absolute top-1/4 left-1/6 w-32 h-32 rounded-full blur-2xl"
-          style={{ backgroundColor: 'rgba(78, 205, 196, 0.08)' }}
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, 10, 0]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 right-1/6 w-24 h-24 rounded-full blur-2xl"
-          style={{ backgroundColor: 'rgba(45, 156, 219, 0.08)' }}
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, -15, 0]
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        <motion.div 
-          className="absolute top-1/2 right-1/3 w-16 h-16 rounded-full blur-xl"
-          style={{ backgroundColor: 'rgba(78, 205, 196, 0.06)' }}
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.3, 0.1],
-            y: [0, 20, 0]
-          }}
-          transition={{ 
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        
+      >  
         <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center justify-items-center">
             <motion.div 
@@ -437,43 +362,12 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Works Preview */}
-      <section id="gallery" className="relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}>
-        {/* Background Elements */}
-        <motion.div 
-          className="absolute top-1/3 left-1/4 w-28 h-28 rounded-full blur-2xl"
-          style={{ backgroundColor: 'rgba(78, 205, 196, 0.06)' }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, 20, 0]
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 right-1/5 w-20 h-20 rounded-full blur-2xl"
-          style={{ backgroundColor: 'rgba(45, 156, 219, 0.06)' }}
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
-            x: [0, -25, 0]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3
-          }}
-        />
-        
+      <section id="gallery" className="relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero)' }}>  
         <div className="w-full relative z-10">
           <div className="text-center px-4 sm:px-6 lg:px-8">
             <motion.h2 
               className="text-4xl font-bold text-text"
-              style={{ marginBottom: '1rem' }}
+              style={{ marginBottom: '1.5rem' }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -489,7 +383,7 @@ export default function Home() {
             </motion.h2>
             <motion.p 
               className="text-lg"
-              style={{ color: 'var(--text-light)', marginBottom: '2rem' }}
+              style={{ color: 'var(--text-light)' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -500,7 +394,7 @@ export default function Home() {
           </div>
           
           {/* Modern Single Artwork Carousel */}
-          <div className="flex justify-center w-full" style={{ marginBottom: '2rem' }}>
+          <div className="flex justify-center w-full" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
             <div className="relative mx-auto" style={{ paddingLeft: '1rem', paddingRight: '1rem', maxWidth: '28rem' }}>
               <div className="overflow-hidden rounded-2xl group">
               <motion.div 
@@ -626,91 +520,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Contact Section */}
       <motion.section 
         id="contact"
         className="relative overflow-hidden" 
-        style={{ paddingTop: '3rem', paddingBottom: '3rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero-reverse)' }}
+        style={{ paddingTop: '4rem', paddingBottom: '4rem', paddingLeft: '1rem', paddingRight: '1rem', background: 'var(--gradient-hero-reverse)' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        {/* Animated background elements */}
-        <motion.div 
-          className="absolute top-1/2 left-1/4 w-20 h-20 rounded-full blur-xl"
-          style={{ backgroundColor: 'rgba(78, 205, 196, 0.05)' }}
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full blur-xl"
-          style={{ backgroundColor: 'rgba(45, 156, 219, 0.05)' }}
-          animate={{ 
-            scale: [1.3, 1, 1.3],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        
-        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
-          <motion.h2 
-            className="text-4xl font-bold mb-6"
-            style={{ color: 'var(--text-light)' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            ¿Tienes una <span style={{ color: 'var(--accent)' }}>Visión Especial</span>?
-          </motion.h2>
-          <motion.p 
-            className="text-lg mb-8 max-w-2xl mx-auto text-center"
-            style={{ color: 'var(--text-light)' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Trabajo con encargos personalizados para crear la obra perfecta que se adapte a tu espacio y gustos.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link 
-              href="#process"
-              className="text-text font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block"
-              style={{ 
-                backgroundColor: 'var(--secondary)',
-                color: 'var(--text-light)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'rgba(45, 156, 219, 0.8)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'var(--secondary)';
-              }}
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header */}
+          <div className="text-center" style={{ marginBottom: '2rem' }}>
+            <motion.h2 
+              className="text-4xl sm:text-5xl font-bold"
+              style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
-              Conoce mi Proceso
-            </Link>
-          </motion.div>
+              ¡<span style={{ color: 'var(--accent)' }}>Conectemos</span>!
+            </motion.h2>
+            <motion.p 
+              className="text-lg sm:text-xl text-center"
+              style={{ 
+                color: 'var(--text-light)', 
+                opacity: 0.9, 
+                marginBottom: '1.5rem',
+                maxWidth: '600px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 0.9, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Me encantaría escuchar de ti y ayudarte a crear algo único. No dudes en escribirme.
+            </motion.p>
+          </div>
+
+          {/* Formulario */}
+          <div className="w-full flex justify-center" style={{ marginBottom: '3rem' }}>
+            <div className="w-full max-w-2xl">
+              <ContactForm />
+            </div>
+          </div>
+
         </div>
       </motion.section>
 
@@ -726,8 +584,8 @@ export default function Home() {
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2 
-            className="text-4xl font-bold mb-4"
-            style={{ color: 'var(--text-light)' }}
+            className="text-4xl font-bold"
+            style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -736,7 +594,7 @@ export default function Home() {
             Mi <span style={{ color: 'var(--accent)' }}>Proceso</span>
           </motion.h2>
           <motion.p 
-            className="text-lg mb-8"
+            className="text-lg"
             style={{ color: 'var(--text-light)' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -747,7 +605,7 @@ export default function Home() {
           </motion.p>
           <motion.div 
             className="text-lg"
-            style={{ color: 'var(--text-light)' }}
+            style={{ color: 'var(--text-light)', marginTop: '2rem' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -770,8 +628,8 @@ export default function Home() {
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2 
-            className="text-4xl font-bold mb-4"
-            style={{ color: 'var(--text-light)' }}
+            className="text-4xl font-bold"
+            style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -780,7 +638,7 @@ export default function Home() {
             <span style={{ color: 'var(--accent)' }}>Precios</span> y Tamaños
           </motion.h2>
           <motion.p 
-            className="text-lg mb-8"
+            className="text-lg"
             style={{ color: 'var(--text-light)' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -791,7 +649,7 @@ export default function Home() {
           </motion.p>
           <motion.div 
             className="text-lg"
-            style={{ color: 'var(--text-light)' }}
+            style={{ color: 'var(--text-light)', marginTop: '2rem' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -814,8 +672,8 @@ export default function Home() {
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2 
-            className="text-4xl font-bold mb-4"
-            style={{ color: 'var(--text-light)' }}
+            className="text-4xl font-bold"
+            style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -824,7 +682,7 @@ export default function Home() {
             <span style={{ color: 'var(--accent)' }}>Blog</span> Artístico
           </motion.h2>
           <motion.p 
-            className="text-lg mb-8"
+            className="text-lg"
             style={{ color: 'var(--text-light)' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -835,7 +693,7 @@ export default function Home() {
           </motion.p>
           <motion.div 
             className="text-lg"
-            style={{ color: 'var(--text-light)' }}
+            style={{ color: 'var(--text-light)', marginTop: '2rem' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
