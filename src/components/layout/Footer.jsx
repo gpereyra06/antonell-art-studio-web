@@ -9,7 +9,7 @@ const Footer = () => {
     <motion.footer 
       className="relative overflow-hidden"
       style={{ 
-        background: 'var(--gradient-hero-reverse)'
+        background: 'var(--gradient-hero)'
       }}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +259,7 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <p style={{ color: 'var(--text-secondary)' }}>
+          <p style={{ color: 'var(--text-light)' }}>
             © 2025 AntonellartStudio - Uruguay. Todos los derechos reservados.
           </p>
         </motion.div>

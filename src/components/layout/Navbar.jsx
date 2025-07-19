@@ -47,7 +47,7 @@ const Navbar = () => {
       <motion.nav 
         className="fixed top-0 w-full backdrop-blur-md transition-all duration-300"
         style={{ 
-          background: 'var(--gradient-hero-reverse)',
+          background: 'var(--gradient-hero)',
           boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.1)',
           zIndex: 50
         }}
