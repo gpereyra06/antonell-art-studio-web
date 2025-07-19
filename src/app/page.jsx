@@ -660,49 +660,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Blog Section */}
-      <motion.section 
-        id="blog"
-        className="relative overflow-hidden" 
-        style={{ padding: '5rem 1rem', background: 'var(--gradient-hero)' }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2 
-            className="text-4xl font-bold"
-            style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <span style={{ color: 'var(--accent)' }}>Blog</span> Artístico
-          </motion.h2>
-          <motion.p 
-            className="text-lg"
-            style={{ color: 'var(--text-light)' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Historias, inspiraciones y proceso creativo
-          </motion.p>
-          <motion.div 
-            className="text-lg"
-            style={{ color: 'var(--text-light)', marginTop: '2rem' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <p>Artículos del blog próximamente...</p>
-          </motion.div>
-        </div>
-      </motion.section>
     </div>
   );
 }

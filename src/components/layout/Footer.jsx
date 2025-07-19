@@ -84,7 +84,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-xl font-semibold mb-4 text-center" style={{ color: 'var(--text-light)' }}>Enlaces</h4>
-            <div className="grid grid-cols-3 gap-x-2 gap-y-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-2 gap-y-2">
               <Link 
                 href="#about" 
                 className="text-base text-center block py-1 transition-all duration-300"
@@ -168,27 +168,6 @@ const Footer = () => {
                 }}
               >
                 Precios
-              </Link>
-              <Link 
-                href="#blog" 
-                className="text-base text-center block py-1 transition-all duration-300"
-                style={{
-                  textDecoration: 'none',
-                  color: '#cccccc'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--accent)';
-                  e.target.style.textDecoration = 'underline';
-                  e.target.style.textDecorationColor = 'var(--accent)';
-                  e.target.style.textDecorationThickness = '2px';
-                  e.target.style.textUnderlineOffset = '4px';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = '#cccccc';
-                  e.target.style.textDecoration = 'none';
-                }}
-              >
-                Blog
               </Link>
               <Link 
                 href="#contact" 
