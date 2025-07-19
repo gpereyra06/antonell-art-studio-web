@@ -2,12 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import ContactForm from "../components/forms/ContactForm";
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
   // Datos de prueba para las obras destacadas
   const obrasDestacadas = [
     {
@@ -17,6 +14,7 @@ export default function Home() {
       dimensiones: "60 x 80 cm",
       precio: 450,
       categoria: "paisaje",
+      disponible: true,
       imagen: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=500&fit=crop"
     },
     {
@@ -26,6 +24,7 @@ export default function Home() {
       dimensiones: "40 x 50 cm",
       precio: 380,
       categoria: "retrato",
+      disponible: false,
       imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop"
     },
     {
@@ -35,6 +34,7 @@ export default function Home() {
       dimensiones: "30 x 40 cm",
       precio: 220,
       categoria: "naturaleza",
+      disponible: true,
       imagen: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=500&h=500&fit=crop"
     },
     {
@@ -44,6 +44,7 @@ export default function Home() {
       dimensiones: "70 x 90 cm",
       precio: 520,
       categoria: "abstracto",
+      disponible: true,
       imagen: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=500&fit=crop"
     },
     {
@@ -53,6 +54,7 @@ export default function Home() {
       dimensiones: "45 x 60 cm",
       precio: 320,
       categoria: "naturaleza-muerta",
+      disponible: true,
       imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop"
     },
     {
@@ -62,6 +64,7 @@ export default function Home() {
       dimensiones: "50 x 70 cm",
       precio: 390,
       categoria: "paisaje",
+      disponible: false,
       imagen: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=500&h=500&fit=crop"
     },
     {
@@ -71,30 +74,10 @@ export default function Home() {
       dimensiones: "80 x 100 cm",
       precio: 680,
       categoria: "paisaje",
+      disponible: true,
       imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=500&fit=crop"
     }
   ];
-
-  // Auto-advance carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % obrasDestacadas.length);
-    }, 4000); // Change slide every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [obrasDestacadas.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % obrasDestacadas.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + obrasDestacadas.length) % obrasDestacadas.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
 
   return (
     <div className="min-h-screen">
@@ -393,102 +376,123 @@ export default function Home() {
             </motion.p>
           </div>
           
-          {/* Modern Single Artwork Carousel */}
-          <div className="flex justify-center w-full" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
-            <div className="relative mx-auto" style={{ paddingLeft: '1rem', paddingRight: '1rem', maxWidth: '28rem' }}>
-              <div className="overflow-hidden rounded-2xl group">
-              <motion.div 
-                className="flex"
-                animate={{ x: `${-currentSlide * 100}%` }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut"
-                }}
-              >
-                {obrasDestacadas.map((obra, index) => (
-                  <motion.div 
-                    key={obra.id}
-                    className="w-full flex-shrink-0"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="bg-glass border border-border rounded-xl overflow-hidden backdrop-blur-md shadow-lg hover:shadow-2xl hover:border-primary/30 transition-all duration-500">
-                      <div className="aspect-[4/3] sm:aspect-[5/3] lg:aspect-[16/9] relative overflow-hidden rounded-xl">
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0"
-                          whileHover={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                        <img 
-                          src={obra.imagen}
-                          alt={obra.titulo}
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 rounded-xl"
-                        />
-                        <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to top, rgba(26, 26, 46, 0.6) 0%, transparent 100%)' }} />
-                        
-                        {/* Always Visible Info */}
-                        <motion.div 
-                          className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 text-white"
-                          initial={{ y: 20, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
+          {/* Modern Grid of Featured Artworks */}
+          <motion.div 
+            className="flex justify-center w-full px-4 sm:px-6 lg:px-8"
+            style={{ marginTop: '3rem', marginBottom: '3rem' }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 justify-items-center max-w-7xl">
+              {obrasDestacadas.slice(0, 3).map((obra, index) => (
+                <motion.div
+                  key={obra.id}
+                  className="group w-full max-w-sm"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="bg-glass border border-border rounded-2xl overflow-hidden backdrop-blur-md shadow-lg hover:shadow-2xl hover:border-accent/40 transition-all duration-500">
+                    {/* Image Container */}
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 opacity-0 z-10"
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <img 
+                        src={obra.imagen}
+                        alt={obra.titulo}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      
+                      {/* Overlay gradient */}
+                      <div 
+                        className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                        style={{ background: 'linear-gradient(to top, rgba(26, 26, 46, 0.8) 0%, transparent 60%)' }}
+                      />
+                      
+                      {/* Hover overlay with action buttons */}
+                      <motion.div 
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+                        initial={{ scale: 0.8 }}
+                        whileHover={{ scale: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="flex gap-3">
+                          <motion.button
+                            className="backdrop-blur-md rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                            style={{ 
+                              backgroundColor: 'rgba(78, 205, 196, 0.9)', 
+                              color: 'var(--bg-dark)',
+                              border: '1px solid var(--accent)'
+                            }}
+                            whileHover={{ scale: 1.05, backgroundColor: 'var(--accent)' }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            Ver Detalles
+                          </motion.button>
+                          <motion.button
+                            className="backdrop-blur-md rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                            style={{ 
+                              backgroundColor: 'rgba(26, 26, 46, 0.9)', 
+                              color: 'var(--accent)',
+                              border: '1px solid var(--accent)'
+                            }}
+                            whileHover={{ scale: 1.05, backgroundColor: 'rgba(26, 26, 46, 0.95)' }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            Encargar Similar
+                          </motion.button>
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="p-6">
+                      <motion.h3 
+                        className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-accent transition-colors duration-300"
+                        style={{ color: 'var(--text-light)' }}
+                      >
+                        {obra.titulo}
+                      </motion.h3>
+                      
+                      <div className="space-y-2 mb-4">
+                        <p className="text-sm lg:text-base" style={{ color: 'var(--text-muted)' }}>
+                          {obra.tecnica}
+                        </p>
+                        <p className="text-sm lg:text-base" style={{ color: 'var(--text-muted)' }}>
+                          {obra.dimensiones}
+                        </p>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <motion.p 
+                          className="text-2xl lg:text-3xl font-bold"
+                          style={{ color: 'var(--accent)' }}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <div className="backdrop-blur-sm rounded-lg p-4 sm:p-6" style={{ backgroundColor: 'rgba(26, 26, 46, 0.8)' }}>
-                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: 'var(--accent)' }}>{obra.titulo}</h3>
-                            <p className="text-sm sm:text-base text-gray-200 mb-1">{obra.tecnica}</p>
-                            <p className="text-sm sm:text-base text-gray-200 mb-3">{obra.dimensiones}</p>
-                            <p className="font-bold text-lg sm:text-xl lg:text-2xl" style={{ color: 'var(--accent)' }}>${obra.precio} USD</p>
-                          </div>
-                        </motion.div>
+                          ${obra.precio} USD
+                        </motion.p>
+                        
+                        <motion.div
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: obra.disponible ? 'var(--success)' : 'var(--error)' }}
+                          whileHover={{ scale: 1.2 }}
+                          title={obra.disponible ? 'Disponible' : 'Vendida'}
+                        />
                       </div>
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-            
-            {/* Carousel Indicators */}
-            <div className="flex justify-center mt-8 sm:mt-10 lg:mt-12 space-x-3">
-              {obrasDestacadas.map((_, index) => (
-                <motion.div
-                  key={index}
-                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full cursor-pointer transition-all duration-300 ${
-                    index === currentSlide ? 'scale-125' : ''
-                  }`}
-                  style={{ backgroundColor: index === currentSlide ? 'var(--accent)' : 'rgba(78, 205, 196, 0.3)' }}
-                  onClick={() => goToSlide(index)}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 1.1 }}
-                />
+                  </div>
+                </motion.div>
               ))}
             </div>
-            
-            {/* Navigation Arrows */}
-            <motion.button 
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 backdrop-blur-sm rounded-full p-3 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ backgroundColor: 'rgba(26, 26, 46, 0.8)' }}
-              onClick={prevSlide}
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 26, 46, 0.9)' }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent)' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </motion.button>
-            
-            <motion.button 
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 backdrop-blur-sm rounded-full p-3 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ backgroundColor: 'rgba(26, 26, 46, 0.8)' }}
-              onClick={nextSlide}
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 26, 46, 0.9)' }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent)' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </motion.button>
-            </div>
-          </div>
+          </motion.div>
 
           <motion.div 
             className="text-center px-4 sm:px-6 lg:px-8"
