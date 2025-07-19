@@ -175,29 +175,47 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >  
-        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16 items-center justify-items-center">
-            <motion.div 
-              className="w-full"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+        <div className="w-full relative z-10">
+          {/* Section Title */}
+          <div className="text-center px-4 sm:px-6 lg:px-8">
+            <motion.h2 
+              className="text-4xl font-bold text-text"
+              style={{ marginBottom: '1.5rem' }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.h2 
-                className="text-4xl font-bold mb-6"
-                style={{ color: 'var(--text-light)' }}
-                whileHover={{ scale: 1.02 }}
+              Sobre <motion.span 
+                style={{ color: 'var(--accent)' }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                Sobre <motion.span 
-                  style={{ color: 'var(--accent)' }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Antonella
-                </motion.span>
-              </motion.h2>
+                Antonella
+              </motion.span>
+            </motion.h2>
+            <motion.p 
+              className="text-lg"
+              style={{ color: 'var(--text-light)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Conoce a la artista detrás de cada obra
+            </motion.p>
+          </div>
+          
+          <div className="flex justify-center px-4 sm:px-6 lg:px-8" style={{ marginTop: '3rem' }}>
+            <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16 w-full max-w-6xl">
+              {/* Text Content */}
+              <motion.div 
+                className="flex-1 md:max-w-lg text-center md:text-left"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
               <motion.p 
                 className="text-lg mb-6 leading-relaxed"
                 style={{ color: 'var(--text-light)' }}
@@ -247,15 +265,17 @@ export default function Home() {
                   Conoce mi historia →
                 </Link>
               </motion.div>
-            </motion.div>
-            <motion.div 
-              className="relative mx-auto"
-              style={{ maxWidth: '20rem' }}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
+              </motion.div>
+              
+              {/* Image Content */}
+              <motion.div 
+                className="flex-1 md:max-w-lg flex justify-center"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <div className="relative w-full max-w-sm">
               {/* Decorative Elements */}
               <motion.div 
                 className="absolute -top-4 -left-4 w-20 h-20 rounded-full blur-xl"
@@ -339,7 +359,9 @@ export default function Home() {
                   </motion.div>
                 </motion.div>
               </motion.div>
-            </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </motion.section>
